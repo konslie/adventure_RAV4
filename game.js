@@ -514,19 +514,20 @@ function drawPlayer(x, y, width, height) {
 
     if (playerImg.complete && playerImg.naturalWidth > 0) {
         // Draw real image loaded from danawa
-        // Keep aspect ratio. Typically the image is wider (approx 1.5 aspect ratio)
-        // Let's size it so it matches lanes nicely
         const aspect = playerImg.naturalHeight / playerImg.naturalWidth;
-        const drawW = 90; // slightly wider for 3D car profile
-        const drawH = drawW * aspect;
+        const imgW = 95; // Original horizontal width of the image
+        const imgH = imgW * aspect; // Original vertical height of the image
         
-        // Draw shadow under the image car
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+        // Draw shadow under the image car (aligned with the final vertical road shape: width=imgH, height=imgW)
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
         ctx.beginPath();
-        ctx.ellipse(0, drawH/2 - 5, drawW/2 - 5, 8, 0, 0, Math.PI * 2);
+        ctx.ellipse(0, 5, imgH / 2 + 2, imgW / 2 - 10, 0, 0, Math.PI * 2);
         ctx.fill();
 
-        ctx.drawImage(playerImg, -drawW / 2, -drawH / 2, drawW, drawH);
+        // Rotate the canvas 90 degrees clockwise so the left-facing car faces UP
+        ctx.rotate(Math.PI / 2);
+
+        ctx.drawImage(playerImg, -imgW / 2, -imgH / 2, imgW, imgH);
     } else {
         // Fallback: RAV4 Main Body (Sporty Red Toyota style)
         const w = width;
