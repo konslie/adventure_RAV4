@@ -23,7 +23,7 @@ const warningBanner = document.getElementById('warning-banner');
 
 // Load RAV4 Image Sprite
 const playerImg = new Image();
-playerImg.src = 'https://autoimg.danawa.com/photo/4173/model_360.png';
+playerImg.src = 'rav4.png';
 playerImg.onload = () => {
     console.log('RAV4 image loaded.');
 };
