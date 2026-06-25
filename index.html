@@ -230,12 +230,18 @@
   .card ul li::before { content: "›"; position: absolute; left: 0; color: var(--red); font-weight: 800; }
 
   /* 타임라인 */
-  .timeline { border-left: 3px solid var(--red); margin-left: 8px; padding-left: 26px; }
+  .timeline { --axis-x: 10px; --axis-w: 3px; position: relative; padding-left: 38px; }
+  .timeline::before {
+    content: ""; position: absolute; left: var(--axis-x); top: 4px; bottom: 4px;
+    width: var(--axis-w); background: var(--red); border-radius: 999px;
+    transform: translateX(-50%);
+  }
   .timeline .ev { margin-bottom: 24px; position: relative; }
   .timeline .ev::before {
-    content: ""; position: absolute; left: -34px; top: 4px;
+    content: ""; position: absolute; left: calc(-38px + var(--axis-x)); top: 4px;
     width: 13px; height: 13px; background: var(--red); border-radius: 50%;
     border: 3px solid #fff; box-shadow: 0 0 0 2px var(--red);
+    transform: translateX(-50%);
   }
   .timeline .t { font-weight: 800; font-size: 15px; }
   .timeline .d { color: var(--gray); font-size: 15px; }
